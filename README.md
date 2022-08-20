@@ -1,3 +1,17 @@
+# HMCL 簡潔版
+
+由於原版的 HMCL 包含了很多（作為一個 Linux 用戶與開源愛好者來看）實在是多余/不純淨的功能，本項旨在刪去這些功能，得到一個純淨的 Minecraft **啓動器**。
+目前刪除的部分即原因：
+- 贊助信息（一堆東西看著很不爽）
+- 使用開發版的主頁提示（我用開發版不用你提醒）
+- 多人聯機功能（使用的技術不開源且不免費，不建議使用）
+- 自我升級功能（升級功能可以交由系統包管理進行，另外本項目也沒能力再維護一個升級源）
+- 反饋功能（可以直接去 github 開 issue）
+
+除這些之外，HMCL 的功能應當正常運作。如果出現問題歡迎提 issue 與 pr。
+
+本人並非專業的 java 開發者，不排除解決不了問題的情況。
+
 # ⛏ Hello Minecraft! Launcher 💎
 
 [![Build Status](https://ci.huangyuhui.net/job/HMCL/badge/icon?.svg)](https://ci.huangyuhui.net/job/HMCL)

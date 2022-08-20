@@ -37,12 +37,12 @@ public final class Metadata {
     public static final String TITLE = NAME + " " + VERSION;
     public static final String FULL_TITLE = FULL_NAME + " v" + VERSION;
 
-    public static final String UPDATE_URL = System.getProperty("hmcl.update_source.override", "https://hmcl.huangyuhui.net/api/update_link");
-    public static final String CONTACT_URL = "https://github.com/huanghongxun/HMCL/issues";
+    // public static final String UPDATE_URL = System.getProperty("hmcl.update_source.override", "https://hmcl.huangyuhui.net/api/update_link");
+    public static final String CONTACT_URL = "https://github.com/weiliang1503/HMCL-Clean/issues";
     public static final String HELP_URL = "https://hmcl.huangyuhui.net/help";
-    public static final String CHANGELOG_URL = "https://hmcl.huangyuhui.net/changelog/";
-    public static final String PUBLISH_URL = "http://www.mcbbs.net/thread-142335-1-1.html";
-    public static final String EULA_URL = "https://hmcl.huangyuhui.net/eula";
+    public static final String CHANGELOG_URL = "https://github.com/weiliang1503/HMCL-Clean/commits/javafx";
+    public static final String PUBLISH_URL = "https://github.com/weiliang1503/HMCL-Clean/releases";
+    public static final String EULA_URL = "https://github.com/weiliang1503/HMCL-Clean/blob/javafx/LICENSE";
 
     public static final String BUILD_CHANNEL = JarUtils.thisJar().flatMap(JarUtils::getManifest).map(manifest -> manifest.getMainAttributes().getValue("Build-Channel")).orElse("nightly");
 
