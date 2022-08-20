@@ -52,9 +52,9 @@ import org.jackhuang.hmcl.ui.construct.TwoLineListItem;
 import org.jackhuang.hmcl.ui.decorator.DecoratorPage;
 import org.jackhuang.hmcl.ui.versions.GameItem;
 import org.jackhuang.hmcl.ui.versions.Versions;
-import org.jackhuang.hmcl.upgrade.RemoteVersion;
-import org.jackhuang.hmcl.upgrade.UpdateChecker;
-import org.jackhuang.hmcl.upgrade.UpdateHandler;
+// import org.jackhuang.hmcl.upgrade.RemoteVersion;
+// import org.jackhuang.hmcl.upgrade.UpdateChecker;
+// import org.jackhuang.hmcl.upgrade.UpdateHandler;
 import org.jackhuang.hmcl.util.javafx.BindingMapping;
 import org.jackhuang.hmcl.util.javafx.MappedObservableList;
 
@@ -73,14 +73,14 @@ public final class MainPage extends StackPane implements DecoratorPage {
     private final JFXPopup popup = new JFXPopup(menu);
 
     private final StringProperty currentGame = new SimpleStringProperty(this, "currentGame");
-    private final BooleanProperty showUpdate = new SimpleBooleanProperty(this, "showUpdate");
-    private final ObjectProperty<RemoteVersion> latestVersion = new SimpleObjectProperty<>(this, "latestVersion");
+    // private final BooleanProperty showUpdate = new SimpleBooleanProperty(this, "showUpdate");
+    // private final ObjectProperty<RemoteVersion> latestVersion = new SimpleObjectProperty<>(this, "latestVersion");
     private final ObservableList<Version> versions = FXCollections.observableArrayList();
     private final ObservableList<Node> versionNodes;
     private Profile profile;
 
     private final VBox announcementPane;
-    private final StackPane updatePane;
+    // private final StackPane updatePane;
     private final JFXButton menuButton;
 
     {
@@ -101,43 +101,43 @@ public final class MainPage extends StackPane implements DecoratorPage {
 
         announcementPane = new VBox(16);
 
-        updatePane = new StackPane();
-        updatePane.setVisible(false);
-        updatePane.getStyleClass().add("bubble");
-        FXUtils.setLimitWidth(updatePane, 230);
-        FXUtils.setLimitHeight(updatePane, 55);
-        StackPane.setAlignment(updatePane, Pos.TOP_RIGHT);
-        updatePane.setOnMouseClicked(e -> onUpgrade());
-        FXUtils.onChange(showUpdateProperty(), this::showUpdate);
+        // updatePane = new StackPane();
+        // updatePane.setVisible(false);
+        // updatePane.getStyleClass().add("bubble");
+        // FXUtils.setLimitWidth(updatePane, 230);
+        // FXUtils.setLimitHeight(updatePane, 55);
+        // StackPane.setAlignment(updatePane, Pos.TOP_RIGHT);
+        // updatePane.setOnMouseClicked(e -> onUpgrade());
+        // FXUtils.onChange(showUpdateProperty(), this::showUpdate);
 
-        {
-            HBox hBox = new HBox();
-            hBox.setSpacing(12);
-            hBox.setAlignment(Pos.CENTER_LEFT);
-            StackPane.setAlignment(hBox, Pos.CENTER_LEFT);
-            StackPane.setMargin(hBox, new Insets(9, 12, 9, 16));
-            {
-                Label lblIcon = new Label();
-                lblIcon.setGraphic(SVG.update(Theme.whiteFillBinding(), 20, 20));
+        // {
+        //     HBox hBox = new HBox();
+        //     hBox.setSpacing(12);
+        //     hBox.setAlignment(Pos.CENTER_LEFT);
+        //     StackPane.setAlignment(hBox, Pos.CENTER_LEFT);
+        //     StackPane.setMargin(hBox, new Insets(9, 12, 9, 16));
+        //     {
+        //         Label lblIcon = new Label();
+        //         lblIcon.setGraphic(SVG.update(Theme.whiteFillBinding(), 20, 20));
 
-                TwoLineListItem prompt = new TwoLineListItem();
-                prompt.setSubtitle(i18n("update.bubble.subtitle"));
-                prompt.setPickOnBounds(false);
-                prompt.titleProperty().bind(BindingMapping.of(latestVersionProperty()).map(latestVersion ->
-                        latestVersion == null ? "" : i18n("update.bubble.title", latestVersion.getVersion())));
+        //         TwoLineListItem prompt = new TwoLineListItem();
+        //         prompt.setSubtitle(i18n("update.bubble.subtitle"));
+        //         prompt.setPickOnBounds(false);
+        //         prompt.titleProperty().bind(BindingMapping.of(latestVersionProperty()).map(latestVersion ->
+        //                 latestVersion == null ? "" : i18n("update.bubble.title", latestVersion.getVersion())));
 
-                hBox.getChildren().setAll(lblIcon, prompt);
-            }
+        //         hBox.getChildren().setAll(lblIcon, prompt);
+        //     }
 
-            JFXButton closeUpdateButton = new JFXButton();
-            closeUpdateButton.setGraphic(SVG.close(Theme.whiteFillBinding(), 10, 10));
-            StackPane.setAlignment(closeUpdateButton, Pos.TOP_RIGHT);
-            closeUpdateButton.getStyleClass().add("toggle-icon-tiny");
-            StackPane.setMargin(closeUpdateButton, new Insets(5));
-            closeUpdateButton.setOnMouseClicked(e -> closeUpdateBubble());
+        //     JFXButton closeUpdateButton = new JFXButton();
+        //     closeUpdateButton.setGraphic(SVG.close(Theme.whiteFillBinding(), 10, 10));
+        //     StackPane.setAlignment(closeUpdateButton, Pos.TOP_RIGHT);
+        //     closeUpdateButton.getStyleClass().add("toggle-icon-tiny");
+        //     StackPane.setMargin(closeUpdateButton, new Insets(5));
+        //     closeUpdateButton.setOnMouseClicked(e -> closeUpdateBubble());
 
-            updatePane.getChildren().setAll(hBox, closeUpdateButton);
-        }
+        //     updatePane.getChildren().setAll(hBox, closeUpdateButton);
+        // }
 
         StackPane launchPane = new StackPane();
         launchPane.getStyleClass().add("launch-pane");
@@ -208,7 +208,7 @@ public final class MainPage extends StackPane implements DecoratorPage {
             launchPane.getChildren().setAll(launchButton, separator, menuButton);
         }
 
-        getChildren().setAll(announcementPane, updatePane, launchPane);
+        getChildren().setAll(announcementPane, launchPane);
 
         menu.setMaxHeight(365);
         menu.setMaxWidth(545);
@@ -223,37 +223,37 @@ public final class MainPage extends StackPane implements DecoratorPage {
     }
 
     public MainPage() {
-        if (Metadata.isNightly()) {
-            announcementPane.getChildren().add(new AnnouncementCard(i18n("update.channel.nightly.title"), i18n("update.channel.nightly.hint")));
-        } else if (Metadata.isDev()) {
-            announcementPane.getChildren().add(new AnnouncementCard(i18n("update.channel.dev.title"), i18n("update.channel.dev.hint")));
-        }
+        // if (Metadata.isNightly()) {
+        //     announcementPane.getChildren().add(new AnnouncementCard(i18n("update.channel.nightly.title"), i18n("update.channel.nightly.hint")));
+        // } else if (Metadata.isDev()) {
+        //     announcementPane.getChildren().add(new AnnouncementCard(i18n("update.channel.dev.title"), i18n("update.channel.dev.hint")));
+        // }
     }
 
-    private void showUpdate(boolean show) {
-        doAnimation(show);
+    // private void showUpdate(boolean show) {
+    //     doAnimation(show);
 
-        if (show && getLatestVersion() != null && !Objects.equals(config().getPromptedVersion(), getLatestVersion().getVersion())) {
-            Controllers.dialog("", i18n("update.bubble.title", getLatestVersion().getVersion()), MessageDialogPane.MessageType.INFO, () -> {
-                config().setPromptedVersion(getLatestVersion().getVersion());
-                onUpgrade();
-            });
-        }
-    }
+    //     if (show && getLatestVersion() != null && !Objects.equals(config().getPromptedVersion(), getLatestVersion().getVersion())) {
+    //         Controllers.dialog("", i18n("update.bubble.title", getLatestVersion().getVersion()), MessageDialogPane.MessageType.INFO, () -> {
+    //             config().setPromptedVersion(getLatestVersion().getVersion());
+    //             onUpgrade();
+    //         });
+    //     }
+    // }
 
     private void doAnimation(boolean show) {
         Duration duration = Duration.millis(320);
         Timeline nowAnimation = new Timeline();
-        nowAnimation.getKeyFrames().addAll(
-                new KeyFrame(Duration.ZERO,
-                        new KeyValue(updatePane.translateXProperty(), show ? 260 : 0, SINE)),
-                new KeyFrame(duration,
-                        new KeyValue(updatePane.translateXProperty(), show ? 0 : 260, SINE)));
-        if (show) nowAnimation.getKeyFrames().add(
-                new KeyFrame(Duration.ZERO, e -> updatePane.setVisible(true)));
-        else nowAnimation.getKeyFrames().add(
-                new KeyFrame(duration, e -> updatePane.setVisible(false)));
-        nowAnimation.play();
+        // nowAnimation.getKeyFrames().addAll(
+        //         new KeyFrame(Duration.ZERO,
+        //                 new KeyValue(updatePane.translateXProperty(), show ? 260 : 0, SINE)),
+        //         new KeyFrame(duration,
+        //                 new KeyValue(updatePane.translateXProperty(), show ? 0 : 260, SINE)));
+        // if (show) nowAnimation.getKeyFrames().add(
+        //         new KeyFrame(Duration.ZERO, e -> updatePane.setVisible(true)));
+        // else nowAnimation.getKeyFrames().add(
+        //         new KeyFrame(duration, e -> updatePane.setVisible(false)));
+        // nowAnimation.play();
     }
 
     private void launch() {
@@ -264,18 +264,18 @@ public final class MainPage extends StackPane implements DecoratorPage {
         popup.show(menuButton, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT, 0, -menuButton.getHeight());
     }
 
-    private void onUpgrade() {
-        RemoteVersion target = UpdateChecker.getLatestVersion();
-        if (target == null) {
-            return;
-        }
-        UpdateHandler.updateFrom(target);
-    }
+    // private void onUpgrade() {
+    //     RemoteVersion target = UpdateChecker.getLatestVersion();
+    //     if (target == null) {
+    //         return;
+    //     }
+    //     UpdateHandler.updateFrom(target);
+    // }
 
-    private void closeUpdateBubble() {
-        showUpdate.unbind();
-        showUpdate.set(false);
-    }
+    // private void closeUpdateBubble() {
+    //     showUpdate.unbind();
+    //     showUpdate.set(false);
+    // }
 
     @Override
     public ReadOnlyObjectWrapper<State> stateProperty() {
@@ -294,29 +294,29 @@ public final class MainPage extends StackPane implements DecoratorPage {
         this.currentGame.set(currentGame);
     }
 
-    public boolean isShowUpdate() {
-        return showUpdate.get();
-    }
+    // public boolean isShowUpdate() {
+    //     return showUpdate.get();
+    // }
 
-    public BooleanProperty showUpdateProperty() {
-        return showUpdate;
-    }
+    // public BooleanProperty showUpdateProperty() {
+    //     return showUpdate;
+    // }
 
-    public void setShowUpdate(boolean showUpdate) {
-        this.showUpdate.set(showUpdate);
-    }
+    // public void setShowUpdate(boolean showUpdate) {
+    //     this.showUpdate.set(showUpdate);
+    // }
 
-    public RemoteVersion getLatestVersion() {
-        return latestVersion.get();
-    }
+    // public RemoteVersion getLatestVersion() {
+    //     return latestVersion.get();
+    // }
 
-    public ObjectProperty<RemoteVersion> latestVersionProperty() {
-        return latestVersion;
-    }
+    // public ObjectProperty<RemoteVersion> latestVersionProperty() {
+    //     return latestVersion;
+    // }
 
-    public void setLatestVersion(RemoteVersion latestVersion) {
-        this.latestVersion.set(latestVersion);
-    }
+    // public void setLatestVersion(RemoteVersion latestVersion) {
+    //     this.latestVersion.set(latestVersion);
+    // }
 
     public void initVersions(Profile profile, List<Version> versions) {
         FXUtils.checkFxUserThread();

@@ -39,7 +39,7 @@ import org.jackhuang.hmcl.ui.decorator.DecoratorPage;
 import org.jackhuang.hmcl.ui.download.ModpackInstallWizardProvider;
 import org.jackhuang.hmcl.ui.versions.GameAdvancedListItem;
 import org.jackhuang.hmcl.ui.versions.Versions;
-import org.jackhuang.hmcl.upgrade.UpdateChecker;
+// import org.jackhuang.hmcl.upgrade.UpdateChecker;
 import org.jackhuang.hmcl.util.TaskCancellationAction;
 import org.jackhuang.hmcl.util.io.CompressingUtils;
 import org.jackhuang.hmcl.util.versioning.VersionNumber;
@@ -90,8 +90,8 @@ public class RootPage extends DecoratorAnimatedPage implements DecoratorPage {
             });
 
             FXUtils.onChangeAndOperate(Profiles.selectedVersionProperty(), mainPage::setCurrentGame);
-            mainPage.showUpdateProperty().bind(UpdateChecker.outdatedProperty());
-            mainPage.latestVersionProperty().bind(UpdateChecker.latestVersionProperty());
+            // mainPage.showUpdateProperty().bind(UpdateChecker.outdatedProperty());
+            // mainPage.latestVersionProperty().bind(UpdateChecker.latestVersionProperty());
 
             Profiles.registerVersionsListener(profile -> {
                 HMCLGameRepository repository = profile.getRepository();
@@ -149,11 +149,11 @@ public class RootPage extends DecoratorAnimatedPage implements DecoratorPage {
             downloadItem.setOnAction(e -> Controllers.navigate(Controllers.getDownloadPage()));
 
             // fifth item in left sidebar
-            AdvancedListItem multiplayerItem = new AdvancedListItem();
-            multiplayerItem.setLeftGraphic(wrap(SVG::lan));
-            multiplayerItem.setActionButtonVisible(false);
-            multiplayerItem.setTitle(i18n("multiplayer"));
-            multiplayerItem.setOnAction(e -> Controllers.navigate(Controllers.getMultiplayerPage()));
+            // AdvancedListItem multiplayerItem = new AdvancedListItem();
+            // multiplayerItem.setLeftGraphic(wrap(SVG::lan));
+            // multiplayerItem.setActionButtonVisible(false);
+            // multiplayerItem.setTitle(i18n("multiplayer"));
+            // multiplayerItem.setOnAction(e -> Controllers.navigate(Controllers.getMultiplayerPage()));
 
             // sixth item in left sidebar
             AdvancedListItem launcherSettingsItem = new AdvancedListItem();
@@ -171,7 +171,7 @@ public class RootPage extends DecoratorAnimatedPage implements DecoratorPage {
                     .add(gameItem)
                     .add(downloadItem)
                     .startCategory(i18n("settings.launcher.general").toUpperCase())
-                    .add(multiplayerItem)
+		// .add(multiplayerItem)
                     .add(launcherSettingsItem);
 
             // the root page, with the sidebar in left, navigator in center.

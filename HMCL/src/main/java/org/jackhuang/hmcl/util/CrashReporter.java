@@ -23,8 +23,8 @@ import javafx.scene.control.Alert.AlertType;
 import org.jackhuang.hmcl.Metadata;
 import org.jackhuang.hmcl.countly.CrashReport;
 import org.jackhuang.hmcl.ui.CrashWindow;
-import org.jackhuang.hmcl.upgrade.IntegrityChecker;
-import org.jackhuang.hmcl.upgrade.UpdateChecker;
+// import org.jackhuang.hmcl.upgrade.IntegrityChecker;
+// import org.jackhuang.hmcl.upgrade.UpdateChecker;
 import org.jackhuang.hmcl.util.io.NetworkUtils;
 
 import java.io.IOException;
@@ -106,9 +106,9 @@ public class CrashReporter implements Thread.UncaughtExceptionHandler {
                     if (showCrashWindow) {
                         new CrashWindow(text).show();
                     }
-                    if (!UpdateChecker.isOutdated() && IntegrityChecker.isSelfVerified()) {
-                        reportToServer(report);
-                    }
+                    // if (!UpdateChecker.isOutdated() && IntegrityChecker.isSelfVerified()) {
+                    //     reportToServer(report);
+                    // }
                 }
             });
         } catch (Throwable handlingException) {

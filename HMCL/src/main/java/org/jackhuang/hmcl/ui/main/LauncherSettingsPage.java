@@ -45,7 +45,7 @@ public class LauncherSettingsPage extends DecoratorAnimatedPage implements Decor
     private final TabHeader.Tab<HelpPage> helpTab = new TabHeader.Tab<>("helpPage");
     private final TabHeader.Tab<AboutPage> aboutTab = new TabHeader.Tab<>("aboutPage");
     private final TabHeader.Tab<FeedbackPage> feedbackTab = new TabHeader.Tab<>("feedbackPage");
-    private final TabHeader.Tab<SponsorPage> sponsorTab = new TabHeader.Tab<>("sponsorPage");
+    // private final TabHeader.Tab<SponsorPage> sponsorTab = new TabHeader.Tab<>("sponsorPage");
     private final TransitionPane transitionPane = new TransitionPane();
 
     public LauncherSettingsPage() {
@@ -55,9 +55,9 @@ public class LauncherSettingsPage extends DecoratorAnimatedPage implements Decor
         downloadTab.setNodeSupplier(DownloadSettingsPage::new);
         helpTab.setNodeSupplier(HelpPage::new);
         feedbackTab.setNodeSupplier(FeedbackPage::new);
-        sponsorTab.setNodeSupplier(SponsorPage::new);
+        // sponsorTab.setNodeSupplier(SponsorPage::new);
         aboutTab.setNodeSupplier(AboutPage::new);
-        tab = new TabHeader(gameTab, settingsTab, personalizationTab, downloadTab, helpTab, feedbackTab, sponsorTab, aboutTab);
+        tab = new TabHeader(gameTab, settingsTab, personalizationTab, downloadTab, helpTab, feedbackTab, aboutTab);
 
         tab.select(gameTab);
         gameTab.initializeIfNeeded();
@@ -106,12 +106,12 @@ public class LauncherSettingsPage extends DecoratorAnimatedPage implements Decor
                         feedbackItem.activeProperty().bind(tab.getSelectionModel().selectedItemProperty().isEqualTo(feedbackTab));
                         feedbackItem.setOnAction(e -> tab.select(feedbackTab));
                     })
-                    .addNavigationDrawerItem(sponsorItem -> {
-                        sponsorItem.setTitle(i18n("sponsor"));
-                        sponsorItem.setLeftGraphic(wrap(SVG::handHearOutline));
-                        sponsorItem.activeProperty().bind(tab.getSelectionModel().selectedItemProperty().isEqualTo(sponsorTab));
-                        sponsorItem.setOnAction(e -> tab.select(sponsorTab));
-                    })
+                    // .addNavigationDrawerItem(sponsorItem -> {
+                    //     sponsorItem.setTitle(i18n("sponsor"));
+                    //     sponsorItem.setLeftGraphic(wrap(SVG::handHearOutline));
+                    //     sponsorItem.activeProperty().bind(tab.getSelectionModel().selectedItemProperty().isEqualTo(sponsorTab));
+                    //     sponsorItem.setOnAction(e -> tab.select(sponsorTab));
+                    // })
                     .addNavigationDrawerItem(aboutItem -> {
                         aboutItem.setTitle(i18n("about"));
                         aboutItem.setLeftGraphic(wrap(SVG::informationOutline));

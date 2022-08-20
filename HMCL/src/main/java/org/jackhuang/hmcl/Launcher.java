@@ -26,8 +26,8 @@ import org.jackhuang.hmcl.task.Schedulers;
 import org.jackhuang.hmcl.task.AsyncTaskExecutor;
 import org.jackhuang.hmcl.ui.AwtUtils;
 import org.jackhuang.hmcl.ui.Controllers;
-import org.jackhuang.hmcl.upgrade.UpdateChecker;
-import org.jackhuang.hmcl.upgrade.UpdateHandler;
+// import org.jackhuang.hmcl.upgrade.UpdateChecker;
+// import org.jackhuang.hmcl.upgrade.UpdateHandler;
 import org.jackhuang.hmcl.util.CrashReporter;
 import org.jackhuang.hmcl.util.Lang;
 import org.jackhuang.hmcl.util.StringUtils;
@@ -78,7 +78,7 @@ public final class Launcher extends Application {
 
                 initIcon();
 
-                UpdateChecker.init();
+                // UpdateChecker.init();
 
                 primaryStage.show();
             });
@@ -100,9 +100,9 @@ public final class Launcher extends Application {
     }
 
     public static void main(String[] args) {
-        if (UpdateHandler.processArguments(args)) {
-            return;
-        }
+        // if (UpdateHandler.processArguments(args)) {
+        //     return;
+        // }
 
         Thread.setDefaultUncaughtExceptionHandler(CRASH_REPORTER);
         AsyncTaskExecutor.setUncaughtExceptionHandler(new CrashReporter(false));

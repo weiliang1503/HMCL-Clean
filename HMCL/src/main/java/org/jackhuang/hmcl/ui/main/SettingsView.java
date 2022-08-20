@@ -49,11 +49,11 @@ public abstract class SettingsView extends StackPane {
     protected final JFXComboBox<SupportedLocale> cboLanguage;
     protected final MultiFileItem<EnumCommonDirectory> fileCommonLocation;
     protected final ComponentSublist fileCommonLocationSublist;
-    protected final Label lblUpdate;
-    protected final Label lblUpdateSub;
-    protected final JFXRadioButton chkUpdateStable;
-    protected final JFXRadioButton chkUpdateDev;
-    protected final JFXButton btnUpdate;
+    // protected final Label lblUpdate;
+    // protected final Label lblUpdateSub;
+    // protected final JFXRadioButton chkUpdateStable;
+    // protected final JFXRadioButton chkUpdateDev;
+    // protected final JFXButton btnUpdate;
     protected final ScrollPane scroll;
 
     public SettingsView() {
@@ -69,10 +69,10 @@ public abstract class SettingsView extends StackPane {
                 ComponentList settingsPane = new ComponentList();
                 {
                     {
-                        StackPane sponsorPane = new StackPane();
-                        sponsorPane.setCursor(Cursor.HAND);
-                        sponsorPane.setOnMouseClicked(e -> onSponsor());
-                        sponsorPane.setPadding(new Insets(8, 0, 8, 0));
+                        // StackPane sponsorPane = new StackPane();
+                        // sponsorPane.setCursor(Cursor.HAND);
+                        // sponsorPane.setOnMouseClicked(e -> onSponsor());
+                        // sponsorPane.setPadding(new Insets(8, 0, 8, 0));
 
                         GridPane gridPane = new GridPane();
 
@@ -97,51 +97,51 @@ public abstract class SettingsView extends StackPane {
                             gridPane.getChildren().add(label);
                         }
 
-                        sponsorPane.getChildren().setAll(gridPane);
-                        settingsPane.getContent().add(sponsorPane);
+                        // sponsorPane.getChildren().setAll(gridPane);
+                        // settingsPane.getContent().add(sponsorPane);
                     }
                 }
 
-                {
-                    ComponentSublist updatePane = new ComponentSublist();
-                    updatePane.setTitle(i18n("update"));
-                    updatePane.setHasSubtitle(true);
-                    {
-                        VBox headerLeft = new VBox();
+                // {
+                //     ComponentSublist updatePane = new ComponentSublist();
+                //     updatePane.setTitle(i18n("update"));
+                //     updatePane.setHasSubtitle(true);
+                //     {
+                //         VBox headerLeft = new VBox();
 
-                        lblUpdate = new Label(i18n("update"));
-                        lblUpdateSub = new Label();
-                        lblUpdateSub.getStyleClass().add("subtitle-label");
+                //         lblUpdate = new Label(i18n("update"));
+                //         lblUpdateSub = new Label();
+                //         lblUpdateSub.getStyleClass().add("subtitle-label");
 
-                        headerLeft.getChildren().setAll(lblUpdate, lblUpdateSub);
-                        updatePane.setHeaderLeft(headerLeft);
-                    }
+                //         headerLeft.getChildren().setAll(lblUpdate, lblUpdateSub);
+                //         updatePane.setHeaderLeft(headerLeft);
+                //     }
 
-                    {
-                        btnUpdate = new JFXButton();
-                        btnUpdate.setOnMouseClicked(e -> onUpdate());
-                        btnUpdate.getStyleClass().add("toggle-icon4");
-                        btnUpdate.setGraphic(SVG.update(Theme.blackFillBinding(), 20, 20));
+                //     {
+                //         btnUpdate = new JFXButton();
+                //         btnUpdate.setOnMouseClicked(e -> onUpdate());
+                //         btnUpdate.getStyleClass().add("toggle-icon4");
+                //         btnUpdate.setGraphic(SVG.update(Theme.blackFillBinding(), 20, 20));
 
-                        updatePane.setHeaderRight(btnUpdate);
-                    }
+                //         updatePane.setHeaderRight(btnUpdate);
+                //     }
 
-                    {
-                        VBox content = new VBox();
-                        content.setSpacing(8);
+                //     {
+                //         VBox content = new VBox();
+                //         content.setSpacing(8);
 
-                        chkUpdateStable = new JFXRadioButton(i18n("update.channel.stable"));
-                        chkUpdateDev = new JFXRadioButton(i18n("update.channel.dev"));
+                //         chkUpdateStable = new JFXRadioButton(i18n("update.channel.stable"));
+                //         chkUpdateDev = new JFXRadioButton(i18n("update.channel.dev"));
 
-                        TextFlow noteWrapper = new TextFlow(new Text(i18n("update.note")));
-                        VBox.setMargin(noteWrapper, new Insets(10, 0, 0, 0));
+                //         TextFlow noteWrapper = new TextFlow(new Text(i18n("update.note")));
+                //         VBox.setMargin(noteWrapper, new Insets(10, 0, 0, 0));
 
-                        content.getChildren().setAll(chkUpdateStable, chkUpdateDev, noteWrapper);
+                //         content.getChildren().setAll(chkUpdateStable, chkUpdateDev, noteWrapper);
 
-                        updatePane.getContent().add(content);
-                    }
-                    settingsPane.getContent().add(updatePane);
-                }
+                //         updatePane.getContent().add(content);
+                //     }
+                //     settingsPane.getContent().add(updatePane);
+                // }
 
                 {
                     fileCommonLocation = new MultiFileItem<>();
@@ -204,11 +204,11 @@ public abstract class SettingsView extends StackPane {
         }
     }
 
-    protected abstract void onUpdate();
+    // protected abstract void onUpdate();
 
     protected abstract void onExportLogs();
 
-    protected abstract void onSponsor();
+    // protected abstract void onSponsor();
 
     protected abstract void clearCacheDirectory();
 }
