@@ -40,8 +40,8 @@ val buildNumber = System.getenv("BUILD_NUMBER")?.toInt().let { number ->
         if (!shortCommit.isNullOrEmpty()) "dev-$shortCommit" else "SNAPSHOT"
     }
 }
-val versionRoot = System.getenv("VERSION_ROOT") ?: "3.5"
-val versionType = System.getenv("VERSION_TYPE") ?: "nightly"
+val versionRoot = System.getenv("VERSION_ROOT") ?: "3.5.3.222"
+val versionType = System.getenv("VERSION_TYPE") ?: "release"
 
 val microsoftAuthId = System.getenv("MICROSOFT_AUTH_ID") ?: ""
 val microsoftAuthSecret = System.getenv("MICROSOFT_AUTH_SECRET") ?: ""
